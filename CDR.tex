@@ -1,3 +1,4 @@
+% !TeX program = xelatex
 \documentclass[12pt]{article}
 \usepackage{geometry}
 \geometry{
@@ -20,10 +21,9 @@
 \usepackage{blindtext}
 \usepackage[pages=some]{background}
 %-------------------------------- Character encoding ----------------------------
+\usepackage[]{fontspec}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{mathptmx}
-
+\setmainfont{Times New Roman}
 %----------------------------- Mathematics packages from AMS ---------------
 
 \usepackage{amsmath, amsfonts, amsthm, amssymb}
@@ -47,51 +47,10 @@
 \setcounter{tocdepth}{2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Hyperlink References %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[hidelinks = true]{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 %--------------------% Storage Path for images %-----------------%
 \graphicspath{{graphics/}{Graphics/}{./}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%% Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewenvironment{abstract}{
-    \begin{center}
-    \textbf{Abstract}
-    \vspace{0.5cm}
-    \par\itshape
-    \begin{minipage}{0.8\linewidth}}{\end{minipage}
-    \noindent\ignorespaces
-    \end{center}
-}
-
-\newenvironment{keywords}{
-    \begin{center}
-    \textbf{Keywords}
-    \vspace{0.5cm}
-    \par
-    \begin{minipage}{0.8\linewidth}}{\end{minipage}
-    \noindent\ignorespaces
-    \end{center}
-}
-
-\newenvironment{preface}{
-    \begin{center}
-    \textbf{Preface}
-    \vspace{0.5cm}
-    \par
-    \begin{minipage}{0.8\linewidth}}{\end{minipage}
-    \noindent\ignorespaces
-    \end{center}
-}
-
-\newenvironment{acknowledgements}{
-    \begin{center}
-    \textbf{Acknowledgements}
-    \vspace{0.5cm}
-    \par
-    \begin{minipage}{0.8\linewidth}}{\end{minipage}
-    \noindent\ignorespaces
-    \end{center}
-}
 
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
@@ -138,11 +97,9 @@
 \section{BASE SYSTEM SUMMARY}
 \subsection{title}
 \subsubsection{adfa}
-\cite[reference citation.]{greenwade93}o
-\blindtext
 \Blindtext
 \section{ORGANIZATION SUMMARY}
-
+\cite[aasdfjasdf]{greenwade93}
 \section{DETAILED DESING SUMMARY}
 
 \section{AUTONOMOUS MISSIONS}
@@ -160,7 +117,6 @@
 \section{REFERENCES}
 
 \singlespacing
-\bibliographystyle{IEEEtran} 
-\bibliography{references}
-
+\bibliographystyle{plain} 
+\bibliography{CDR}
 \end{document}
