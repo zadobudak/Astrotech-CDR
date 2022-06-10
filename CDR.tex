@@ -1,4 +1,4 @@
-% !TeX program = xelatex
+% !TeX program = lualatex
 \documentclass[12pt]{article}
 \usepackage{geometry}
 \geometry{
@@ -19,7 +19,7 @@
     {Table of Contents}}
 
 \usepackage{blindtext}
-\usepackage[pages=some]{background}
+% \usepackage{background}
 %-------------------------------- Character encoding ----------------------------
 \usepackage[]{fontspec}
 \usepackage[T1]{fontenc}
@@ -31,6 +31,7 @@
 
 % ----------- International System of Units
 \usepackage{siunitx}
+\usepackage{tikz}
 
 %------------------------------ Lists / numbers -------------------------
 \usepackage{enumitem, multicol}
@@ -40,6 +41,7 @@
 \usepackage{keystroke}
 \usepackage{pgfplots}\usepgfplotslibrary{units}\pgfplotsset{compat=1.16}
 \usepackage{fancyhdr}
+\usepackage{eso-pic}
 %------------------------------- Line Spacing --------------
 \usepackage{setspace}
 
@@ -55,26 +57,31 @@
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
-\backgroundsetup{
-	firstpage=true,
-	scale = 2.0,
-	opacity = 0.5,
-	angle = 0,
-	contents = {
-		\includegraphics[width=\linewidth]{teknofest_logo.png}
-	}
-}
+% \backgroundsetup{
+% 	scale = 1.0,
+% 	opacity = 0.5,
+% 	angle = 0,
+% 	contents = {\includegraphics[width=\paperwidth]{teknofest_logo.png}}
+% }
 \pagestyle{fancy}
 \fancyhf{}
 \chead{FIGHTER UAV COMPETITION 2022}
 \cfoot{ASTROTECH}
 \rfoot{\thepage}
 
+\pagenumbering{gobble} % Title page
 \begin{document}
 \setstretch{1.15}
+
+
 \begin{titlepage}
-	\pagenumbering{gobble} % Title page
-	\centering
+    \centering
+    \AddToShipoutPictureBG{
+        \begin{tikzpicture}[opacity=0.3]\node at
+        (0,0){\includegraphics[width = \paperwidth ]{teknofest_logo.png}};
+        \end{tikzpicture}
+        }
+
 	\title{ %TODO texts can be made bigger
 		TEKNOFEST \\
 		AVIATION, SPACE AND TECHNOLOGY FESTIVAL \\
@@ -87,7 +94,9 @@
 	\maketitle
 \end{titlepage}	
 
+
 \clearpage
+% \noBgThispage
 \pagenumbering{arabic}
 \stepcounter{page}
 \tableofcontents % Table of contents
@@ -117,6 +126,6 @@
 \section{REFERENCES}
 
 \singlespacing
-\bibliographystyle{plain} 
+\bibliographystyle{IEEEtran} 
 \bibliography{CDR}
 \end{document}
