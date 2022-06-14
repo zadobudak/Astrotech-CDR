@@ -285,15 +285,104 @@ Astrotech Ground Station consists of two seperate units in order to provide the 
 
 It is considered suitable to run in Ubuntu operating system due to the ease of use of UNIX with ground control station software architecture and the used computer has Ubuntu operating system.
 
+\subsection{Ground Control Software (QGroundControl)}
+QGround was preferred because the Astrotech platform would be preffered during the tests and the test UAV was controlled from the same ground control station, and lastly, our several team member had experience using QGround before. QGround provides full flight control and configuration for ArduPilot or PX4 Pro powered vehicles. It also provides mision planning for autonomos flight. QGroundControl, which has an easy and understandable interface, has been found suitable for use.     \\ 
+
+In addition to displaying the dynamic, electronic and location features of the UAV in the real time, it also has a flight planner for autonomous missions. During the competition, featres such as stance,position, height, distance, and batery obtained on the Astrotech’s platform will be controlled over the QGroundControl interface, and emergency response commands will be transmitted over QGround for possible needs.
+
+\subsection*{Astrotech User Interface}
+The commands to provide the desired conditions during the competition are integrated into the astrotech interface. Mode change, opponent selection, landing and take-off situations with the provided commands can be determinend by astrotech interface. It supports the ground station in terms of easy usage and usability.     
+     Images from the CSI Deadlock Camera will be able to be followed from astrotech user interface. After locking square is created, the image will be transferred to the ground control software by opencv library.
+
+       The location informations from the server will be displayed on a virtual coordinate planes between Astrotech and competitor UAVs. autonomous locking, the route to be followed by astrotech in the air will be followed in real time through the radar system we use these coordinates. The traceable route is shown as in the figure !!. The x-axis shows longitude, while the y-axis shows latitude.
+      For autonomous locking, locking to the competitor can be selected autonomously, while it can also be selected manually from the ground control center.
+      With the help of the control screen, the desired requests can be fulfilled easily. It has the feature to be controlled from the ground station with QgroundControl in case of emergency.
+
+
+
+         We can also follow some values such as longtitude and latitude like obvious in figg!!
+And also it stated that  it is easy to follow route of the Astrotech UAV and competitors’ UAV
+
+         Although electronic and dynamic calculations for flight will be done by QGroundControl, basic flight characteristics such as speed, altitude, and mode can also be followed from the astrotech interface.
+
+Astrotech interface is showed in fig!! Advantages of Astrotech User Interface:
+It is easy to use interface
+It contains basic commands needed will be able to perform the desired tasks for the ccompetition by communicating with the server.
+It can be used for many purposes because it is easy to edit and open to developments.
+
+
 
 \section{AIRCRAFT INTEGRATION}
+\
+
 \subsection{Stuctural Integration}
+In this part, the steps to build the X-UAV Talon is explained with images taken in the process. The X-UAV Talon consists of a wooden frame, EPO foam body and wings, and carbon fiber rods for increased structural integrity.
+%todo figure
+
+As a first step, the plywood pieces that form the inner frame of the aircraft were fixed together with an appropriate wood glue. The parts were secured together and left to dry. This part will hold the foam parts of the fuselage together and it will also be used as a platform to hold the equipment of the aircraft. Then, to prepare the two part fuselage, 6mm carbon fiber rods were glued to their slots. Polyurethane glue is used in steps involving gluing parts to foam. Polyurethane glue bonds parts to foam strongly due to its expanding nature. It is also suitable for our use because it doesn’t react with the EPO foam.
+
+%todo figure
+
+After this step, the frame is ready to be glued to one side of the foam body. After all plywood pieces are fixed, the other side of the body is glued to the rest of the parts to complete the fuselage of the aircraft. In this step, to make sure we have a successful bond, the fuselage was fixed together with paper tape until the glue is completely dry.
+
+%todo figure
+The wings of the X-UAV Talon are also built from EPO foam. To increase the strength of the wings, carbon fiber rods are glued to the underside of the wing. Plastic clamps are attached to the rods to help with attaching the wings to the fuselage later on. Servo horns are then glued to the control surfaces on the wings and tail. Carbon fiber rods are glued to the tail. Then, the V-Tail is also glued to the fuselage using polyurethane glue.
+
+%todo figure
+After all the parts are properly glued together, the aircraft is ready to be assembled. Assembly of the UAV is fast and user friendly. The wings can be attached to the fuselage using a carbon fiber tube and secured to their places using the plastic clamps inside the wings. The X-UAV Talon can be disassembled into three parts to help with storing and transporting.
+
+
 \subsection{Mechanical Integration}
+The mechanical integration of our UAV needs careful planning and implementation. Because of the needs of our mission, our UAV has various systems integrated to it. These systems are integrated in a way to be safe, efficient and user friendly. The motor of our aircraft will be mounted to the plywood piece on the rear side in a pusher prop configuration. The ESC that is going to provide power to the motor will be located on the front of the motor and wired to it. The air vents in the rear part of the fuselage will help to keep the ESC cool. The servo motors will be mounted to their places in the wing and the tail. Control rods will be attached between the servo motors and the control horns to connect the control surfaces. The camera of the UAV will be connected to the front plate that lets the camera to have an unobstructed view. \\
+%todo figure
+
+The other parts of the UAV like the computer, battery, flight controller and others will be positioned and secured to their places considering the center of weight of the aircraft. Parts are going to be attached in a way that prevents them from moving while the aircraft is flying. Sensitive equipment will be protected from impact, vibration and other hazards that may damage or harm them.\\
+
+%todo Figure
+
 \subsection{Electronic Integration}
 
+Although the electronic integration could not be completed due to the ongoing supply of electronic components, how to do it is explained in this section. Electronic integration can be examined under two headings. These are main power line integration and signal line integration.\\
+
+The maximum current value was taken into account in the cable selection for the integration of the power line. Current breaker and fuse will be placed just after the battery. A POE adapter will be used to provide extra power to the antennaWhile locating the power line cables in the fuselage, care shall be taken to maintain the distance between the cable line and the modules and to ensure that the cable lengths are not excessive in order to ensure that the communication modules are less affected. Attention will be paid to the insulation of the entire power line, especially the soldering areas.\\
+
+The integration of signal lines, especially the multitude of cables coming to the flight controller, can cause cable tangles. To prevent this, markings will be made on the ends of the cables coming from the servos, ESC, sensors, control receiver, telemetry module, auxiliary computer, which are close to the flight controller. Since the lengths of the internal cables of the servo motors and the ESC will not be sufficient, extension cables will be used. While adjusting the cable lengths, care will be taken to make it easy to put on and take off. Care will be taken to ensure that cable insulation and connectors are not affected by vibration.\\
+
+
 \section{TEST AND SIMULATION}
+
 \subsection{Sub-System Tests}
+\paragraph*{Propulsion Test} Even though the sufficiency of our propulsion system is calculated theoretically, it is important to test it in real life conditions. An insufficient system can cause our aircraft to behave unexpectedly or it may not satisfy our expectations. After all the elements of the propulsion system are obtained, a thrust test will be made to confirm our calculations. Before the test flight of our UAV, we will confirm that the motor, ESC and the propeller behaves as expected and the maximum thrust they provide is consistent with our calculations.
+
+\paragraph*{Structural Test} The structural strength and integrity of an aircraft must be tested before it’s flight. The fuselage and the wings of our aircraft will be tested to confirm their strength. To test the wings, it will be supported from its center and then weights will be loaded elliptically, decreasing as we go to the tips of the wing. The weight will be increased gradually until we reach the maximum amount of lift we expect to be generated by the wings. Then, the deviation of the wings will be measured. When we observe that the wings can withstand the weight without deforming permanently, the strength of the wing will be confirmed.
+
+\paragraph*{Telemetry Operation Range Test} The aim of the test is to measure the range of the telemetry module. The test would be conducted by placing two telemetry modules into a RC drone and installing two ground control stations one of which is close to the RC drone, and the other one is located far from it. One of the telemetry modules would transmit the data of the drone to the close ground control station so that we could obtain the data about the flight. However, the other telemetry module would transmit the data to the ground control station which is located far from it so that we can test when the transmission would be interrupted and determine the maximum range of the telemetry module.
+
+\paragraph*{Artificial Visual Locking Test} The aim of the test is to measure the accuracy and the latency of the image processing algorithms so that the problems can be detected, and any necessary precaution can be taken. To measure the performance of the algorithm, the onboard camera would be connected to the companion computer in a lab environment, and the camera would be fed by different videos with high frame rates. During this process, the image processing algorithm will be executed on the companion computer and process the data obtained by the camera. At the end of the tests, with the help of the various videos, the accuracy of the algorithm should be examined to detect if the algorithm has any bias towards any particular case. If so, the diversity of the dataset should be improved. The latency of the algorithm should also be measured, and if any problem is spotted, further optimization should be carried out to improve the inference time. 
+
+\paragraph*{Path Following Test} The aim of this test is to evaluate how much Astrotech UAV deviates from the planned path. By having small increments in time, the difference between planned path and the actual path the Astrotech UAV would cover would be measured, and the accumulation of the error throughout the mission will also be observed. Initially, the test would be carried out in a simulation environment to minimize the risks. After the test in the simulation environment shows the deviation is not that significant, the physical test would be begun.
+
+
 \subsection{Flight Test and Flight Checklist}
+The flight tests planned to be carried out are examined under two headings. The first of these is the tests in which data are collected, or basic autonomous capabilities are checked to understand the flight characteristics of the UAV. These tests are called basic flight tests. The other topic is flight tests for the mission. In these tests, different parts of the software are developed for the competition task, and finally, the task software as a whole is tested. Data from these tests are used for debugging. The following chapters examine basic flight tests in 8.2.1, mission-oriented tests in 8.2.2, and flight checklists in 8.2.3.
+
+\subsubsection*{Basic Flight Tests}
+
+\paragraph*{First Flight test}\\
+
+\subparagraph*{Purpose} The main purpose of this test is to verify that the UAV can fly smoothly in stabilized mode. If the pilot approves after a few laps in the air, then the vehicle's behavior in manual mode is tested. This test will reveal exact details about the flight characteristics of the aircraft while in stabilized mode. It is also required for autotune testing.
+
+\subparagraph*{Procedure}
+
+Although the first flight is very important in getting to know the UAV, it is one of the flights with the highest risk. Therefore, the flight location and the pilot must be suitable for this in the first flight. Which maneuvers are to be performed after the aircraft takes off and how aggressive to be while performing these maneuvers should be evaluated before the flight. During the test process, the entire test team should follow the flight in anticipation and be ready for any setback. The pilot should assess in advance where he can land in an emergency. \\
+
+
+There will be no companion computer and camera on the prepared aircraft. This is because these components are not needed for the first flight, and they also increase the loss in case of a possible crash. Pieces of XPS foam of the same weight will be cut and placed in their place.
+
+After the pre-flight checks are completed, the takeoff step starts. Afterward, maneuvers are made to draw an 8 in the air. These maneuvers are first performed with a large turning radius. A more aggressive turn is expected from the aircraft on each full lap. After observing the aircraft's behavior under this maneuver, different flight modes (LOITER, MANUAL, etc.) and climbing ability at different throttle values can be tested. After the trials are completed, the landing is made.
+
+\paragraph*{Autotune} 
+
 
 \section{SAFETY}
 
