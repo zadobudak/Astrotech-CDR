@@ -1,4 +1,5 @@
 % !TeX program = lualatex
+
 \documentclass[12pt]{article}
 \usepackage{geometry}
 \geometry{
@@ -13,6 +14,7 @@
 	%showframe, % Uncomment to show how the type block is set on the page
 }
 \usepackage[english]{babel}
+\usepackage[]{ragged2e}
 
 \addto\captionsenglish{% Replace "english" with the language you use
   \renewcommand{\contentsname}%
@@ -95,31 +97,88 @@
 \end{titlepage}	
 
 
-\clearpage
 % \noBgThispage
 \pagenumbering{arabic}
 \stepcounter{page}
 \tableofcontents % Table of contents
-
 \clearpage
 
+
 \section{BASE SYSTEM SUMMARY}
-\subsection{title}
-\subsubsection{adfa}
-\Blindtext
+\subsection{System Description}
+\justify 
+
+The basic mission description of Astrotech UAV system is selecting a target by analyzing data from rival UAVs moving in the air, performing an appropriate approach to the target UAV to obtain a visual contact and pursuing the rival UAV with the help of the guidance algorithm. The Astrotech UAV is also capable of diving onto ground targets whose coordinates are given and collecting data on these targets.
+
+\justify
+The UAV system, the combination of the Astrotech UAV and the ground station, consists of components under two headings, those onboard and those in the ground station. The onboard components are located inside the fuselage and enable high maneuverability and robustness for fully autonomous flight, which are key properties to fulfill the mission requirements. Among these onboard components, the flight controller is responsible for the stable flight of the UAV using data obtained from its sensors, such as IMU and magnetometer. It also sets the standard for interconnection between the controlled elements and the mission software. In addition to sensors in the flight controller, extra external sensors, such as GPS, airspeed sensor and LIDAR are also connected to it. Another onboard component is the companion computer on which mission software runs. It directly or indirectly uses data from all other sensors, including the camera, and processing this data, it transmits the commands-control outputs to the flight controller. For communication of the Astrotech UAV with the ground station, in addition to the use of RFD868 telemetry set for mutual telemetry communication, R12DS receiver for receiving the inputs from the RF controller, Ubiquiti Bullet M5-HP for displaying the view of UAV are used.
+
+\justify
+The ground station in the UAV system also consists of numerous electronic components, one of which is the ground station computer. It is responsible for the communication with the main server, analysis of data obtained from the server and transmitting it to the Astrotech UAV. It further allows the data of the Astrotech UAV to be displayed in a visual format with a GUI. In addition, one of the telemetry transceivers, the RF controller required to manually control the UAV when necessary, and a Wi-Fi receiver, that is required to monitor the image from the ground station, are also located in the ground station. Finally, the RTK module, which is used to increase the sensitivity of the GPS data, is also located in the ground station.
+
+\subsection{System Final Performance Specifications}
+In this part, the final performance specifications of the system that are found from the analysis and simulation programs are given.
+
+% \begin{table}
+% 	\centering
+% 	%TODO Table here
+% \end{table}
+
+\justify
+As a result of our calculations, Astrotech UAV’s takeoff weight is found 3100 grams, and the useful load is found 1500 grams, so we need 3100 grams of lift force to maintain a steady level flight. As a result, we find the cruise speed as 17 meters per second to provide this much lift force at low angle of attack values (0-2), in other words, to fly at a steady level. Moreover, the speed on the stall position, where the angle of attack rises beyond a specific point, then lift begins to decrease, is found at 9.5 meters per second by the formula:
+
+\begin{align}
+	V_{stall} = \sqrt{ \frac{2W}{\rho \cdot S C_{L max}}} 
+\end{align}
+
+% TODO Figure here
+\justify
+The flight time has been calculated as 24.7 minutes, and CL/CD ratio has been calculated as 20 for cruise speed. For detailed information, see 3.3 from the report.
+\justify
+The average rate of climb value of Astrotech UAV has been evaluated as 8.8 m/s by the formula:
+
+\begin{align}
+	R_{OC} = \frac{T \cdot V_\infty - D \cdot V_\infty}{W}
+\end{align}
+
+The weight of the aircraft is 30.411 Newton, thrust (T) equals 18.3 Newton, drag (D) equals 2.5 Newton, and the aircraft's speed is equal to 17 meters per second, that is, cruise speed. If the values are put in the equation, the rate of climb can be found as 8.8 meters per second.
+\justify
+Camera resolution is an important specification which affects the image quality and therefore influences our ability to detect or characterize objects of interest during tacking and detecting competitor UAVs. The decided camera module supports up to 120 fps for full HD resolution which is critical in any application involving fast motion.
+\justify
+It is expected that the companion computer can work at 30 FPS when selected image processing methods are used. NVIDIA Xavier NX Developer Kit has NVIDIA Volta architecture with 384 NVIDIA CUDA® cores, and 48 Tensor cores and these features are enough to satisfy our expectations. 
+\justify
+The minimum turn radius is found as 9.2 meters. While finding the minimum turn radius, the banking angle plays a vital role in finding the load factor (n) because the load factor is equal to $\frac{1}{\cos(\Phi)}$ where \Phi is the banking angle. Moreover, if \Phi  approaches 2, the load factor value goes to infinity and, therefore, 1n becomes closer to 0. As a result, if we look at the minimum turn radius equation, which is $R_{min}=\frac{V^2_{stall}}{g \cdot \sqrt{1-\frac{1}{n^2}}}$ . Stall speed is 9.5 meters per second, g is the gravitational acceleration, which is equal to 9.81 meters per second square, and, if $\frac{1}{n}$ is equal to 0, the value inside the square root is the 1. As a result, the minimum radius turn value becomes 9.22 meters.
+
+
 \section{ORGANIZATION SUMMARY}
-\cite[aasdfjasdf]{greenwade93}
+\subsection{Team Organization}
+\subsection{Timeline and Budget}
+
 \section{DETAILED DESING SUMMARY}
+\subsection{Final System Architecture}
+\subsection{Subsystems Summary}
+\subsection{Aircraft Performance Summary}
+\subsection{3D Design of Aircraft}
+\subsection{Aircraft Weight Distrubution}
+
+
 
 \section{AUTONOMOUS MISSIONS}
+\subsection{Autonomous Lockdown}
+\subsection{Kamikaze Mission}
 
 \section{GROUND STATION AND COMMUNICATION}
 
 \section{USER INTERFACE DESIGN}
 
 \section{AIRCRAFT INTEGRATION}
+\subsection{Stuctural Integration}
+\subsection{Mechanical Integration}
+\subsection{Electronic Integration}
 
 \section{TEST AND SIMULATION}
+\subsection{Sub-System Tests}
+\subsection{Flight Test and Flight Checklist}
 
 \section{SAFETY}
 
