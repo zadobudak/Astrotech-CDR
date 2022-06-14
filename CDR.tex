@@ -198,8 +198,44 @@ Aerodynamic analysis of the Astrotech’s tail, wing, and body has been done usi
 The CL/CD vs. Alpha graph represents the efficiency of the aircraft, and the more CL/CD means, the more efficient the aircraft is. Therefore, we want High CL/CD for less fuel consumption and, as a result, more time in flight. Moreover, in steady level flight which is the condition thrust (T) is equal to drag force (D) and Lift Force (L) is equal to the weight of the aircraft(W), we want higher CL/CD values. In the graph, the CL/CD ratio between the 0-2 angle of attack (desired steady level flight angle of attacks) is between 19-21.  Thus, CL/CD ratio is around 20 when the condition is steady. However, Raymer (2018) stated that CL/CD ratio can decrease after the external components takes its place on the aircraft. Thus, after the external components such as servos are placed at the outer skeleton of the frame, we premeditate that this ratio can decrease up to 12. 
 
 
+Moreover, in steady level flight, $T/D$ should be equal to $W/L \ \  (\frac{T}{D}=\frac{W}{L})$, and if we rearrange this equation, we can find the equation which plays a vital role in thrust calculations $\frac{T}{W}=\frac{D}{L}=\frac{C_D}{C_L}$. The weight of the aircraft is $30.411 Newton$ $(\frac{3100[g]9.81[m/s2]}{1000[g/kg]})$. The CL/CD ratio is 12 ($CD/CL$ ratio is $1/12$). If we put the values into the equation, we will find the required thrust for steady level flight as $2.53 Newton$ (260 grams). However, in a competition like the Fighting UAV, the competitor UAVs should be very aerobatic and maneuverable to accomplish the missions of the competition like dogfighting or kamikaze diving. During maneuvers, the engine has to generate more additional thrust. Therefore, 260 grams of thrust cannot be enough to succeed in the competition. Because of it, excess thrust should come into play through our thrust calculations. The average excess thrust has been calculated as $15.7 Newton$ (1600 grams). As a result, the required thrust force can be calculated as $18.3 Newton$ (1860 grams). Moreover, we can obtain 5m/s2 $(F_{net} (Excess Thrust) = m \times a )$ acceleration in x-direction with this excess thrust.       
+
+\begin{align}
+	Excess \ Thrust = Thrust \ Force \ - Drag \ Force
+\end{align}
+
+\paragraph*{Average Endurance} The endurance can be changed by how much thrust is applied by the engine. For example, suppose the engine provides thrust just for the steady level flight. In that case, the endurance will be very high because the consumed power from the battery will be low. However, if it is allowed for \% 100 throttle, the endurance will be lower than the calculated endurance for steady level flight because the consumed power will be high. Therefore, it is needed to find an average value for endurance. Moreover, the thrust value we should look for is 1860 grams, and the corresponding consumed power value which can be found in the motor manufacturer’s datasheet is given in table X. When all of the components are placed on the plane, they consume the power provided by the battery. Firstly, we find this consumed power, and after that, we should find the current by using the formula X1. Lastly, if we divide the ampere*hour of the battery by the current, we can reach the time that the frame can withstand in the air.
+
+\begin{align}
+	Power&= Voltage  \times Current \\
+	 (P &= V \cdot I)\\
+	\frac{10000 \ mAh}{1000 \ I } &= Time 
+\end{align}
+%ToDO Table X here
+The consumed power of the components is found by using the formula X1. The total consumed power is seen as 360 Watts. Moreover, our battery’s voltage value is 14.8 Volts. If we put the voltage value of the battery with the total consumed power in the formula X1, we can find the average load current value of 24.32 Ampere. Furthermore, we know that the battery has 10000 mAh and the average load current is 24.32 Ampere. As a result, we can find the time using the formula X2. The average endurance is found as 0.411 hours, equal to 24.7 minutes. Considering that the Fighting UAV competition will last 15 minutes, it can be seen that the average endurance is 9.7 minutes, more than the required time. Thus, our project is suitable for competition requirements.  Moreover, the test procedure cannot be done yet due to delayed financial support from Teknofest.
+%Todo Figure here
+
 \subsection{3D Design of Aircraft}
+
+Astrotech UAV is the Eagle Talon model aircraft produced by X-UAV company and the 3D design of this model aircraft is not available on the Internet, so it has been designed using the CATIA and ANSYS Spaceclaim. In addition, the assembly process and technical drawing of the components has been done with the ANSYS Spaceclaim. While performing the structural integration of the Astrotech UAV, these integrations are made with considering the dimensions and weights of the avionics used, their distance from the center of gravity of the UAV and minimum cabling. Some components which need to be taken out or taken in often, such as batteries, or have too much cable connections must be placed easily accessible positions where are chosen close to the upper cover part. Power and data lines of electronics telemetry of high current power cables, for example, in such a way that they affect each other the least. It should also be considered that it is placed in places far from each other so that it does not affect the signal. has been kept. The technical drawing and CAD drawing of the Astrotech UAV is shown in Figure  and Figure , the dimensions in mm are shown in Figure , and the positioning of the avionics placed in it are shown in Figures  and . Wiring is not included in this positioning.
+
+
+The location of components is given in the Figure . The points taken into consideration while making this distribution are the center of gravity and the comfort it offers to the user. There is enough space in the front part of Astrotech UAV for the battery. In this way, adjustments can be made to keep the center of gravity at the desired point.
+
+
+%Todo Figure here
+
+The top view of Astrotech UAV is given below. In the following figure the location of pitot tube and servos where is placed in wing and tail is given below. In the following figure the one part of symmetry can be seen. Also, there are servos in the other side of Astrotech UAV.
+
+
+
 \subsection{Aircraft Weight Distrubution}
+
+The location of the center of gravity is one of the most important factors affecting the flight characteristics of the UAV. In addition to a stable flight of our aircraft, high maneuverability is required for the missions. According to the information provided by company which produce this frame, when only the frame is considered, the center of gravity is 75mm behind the leading edge of the wing. As a result of both the information provided by the company and the analyzes made, the center of gravity was adjusted according to this point. The layout of the components is planned to determine the center of gravity at this point. Detailed weight, moment and center of weight calculation are given in detail in the Table  below. The center of gravity can be seen in the following Figure .
+
+%todo figure here
+
+The calculation is given Table  below. The moment according to x and y axis is calculated. According to x-axis the moment is 0 (gr*mm). According to y-axis the moment is 0,8 (gr*mm) which is equal to 0,8*10-6 (kg*m). This result is negligible. 
 
 
 
@@ -208,8 +244,47 @@ The CL/CD vs. Alpha graph represents the efficiency of the aircraft, and the mor
 \subsection{Kamikaze Mission}
 
 \section{GROUND STATION AND COMMUNICATION}
+Under this topic, the details about in-vehicle communication, vehicle-ground station communication and ground station to main server communication are given.
+\subsection{In-Vehicle Communication}
+\paragraph*{Camera-Companion Computer Communication} Communication between e-CAM24\_CUNX and Nvidia Xavier NX is based on CSI-2 MIPI communication specification. FPC connector is used to establish the connection. This connector allows the camera output port to be connected to the Camera0 (or Camera1) port of Xavier NX.
+
+\paragraph*{Companion Computer-Flight Control Card} The communication of Xavier NX and Pixhawk Cuber Orange takes place according to UART, which is an asynchronous serial communication protocol. The sent data packages are prepared according to the MAVLink data protocol, and Fast RTPS (Real Time Publish and Subscribe) is also used for fast access. For this to be possible, it requires the use of the PX4-Fast RTPS(DDS) Bridge. In order to establish the hardware connection, it is necessary to connect the one side of connector to the Telemetry0 or Telemetry1 port of Pixhawk Cube Orange and then the relevant lines of it to the RX, TX, 5V and, GND ports of Xavier NX.
+
+\paragraph*{Flight Controller-GPS} Communication between Pixhawk Cube Orange and Here3 GPS takes place according to CAN protocol. Here3 GPS connector is connected to CAN port of Pixhawk Cube Orange.
+
+\paragraph*{Flight Controller-Airspeed Sensor} The communication between these components takes place via I2C protocol. To establish the connection, the connector of the Holybro digital airspeed sensor is connected to the I2C port of the Pixhawk Cube Orange.
+
+\paragraph*{Flight Controller-Control Receiver}Communication between R12DSM and Pixhawk Cube Orange takes place according to SBUS protocol. SBUS is a serial communication protocol used especially in hobby vehicles. In order to establish the connection, the connector of the R12DSM must be connected to the SBUS port located at the beginning of the servo line of the Pixhawk Cube Orange.
+
+\paragraph*{Flight Controller-Telemetry Module} Communication between Pixhawk Cube Orange and RFD868 will take place according to UART communication protocol. The data packages sent have a form suitable for the MAVLink communication protocol. In order to establish the hardware connection, the connector of the RFD868 is plugged into the Telemetry0 or Telemetry1 port of the Pixhawk Cube Orange. 
+
+\paragraph*{Flight Controller-ESC-Servo Motors} Control outputs from Pixhawk Cube Orange are transmitted to ESC and servo motors as PWM signals.
+
+\subsection{UAV-Ground Control Station Communcation}
+
+\paragraph*{RFD868 Modules} The frequency range of these modules is 865-870 MHz and they enable RC PPM Passthrough with telemetry at the same time. When connected to Pixhawk, data packages are transmitted to the ground station according to the MAVLink communication protocol. They have a default Air Data transfer rate of 64 kbit/s and support up to 750 kbit/s. The connection between the RFD868 module used in the ground station and the ground station computer will be made via the USB port. Incoming data is packaged according to the MAVLink data protocol. These data coming to the ground station are used to update the interface with the pymavlink library.
+
+\paragraph*{Ubiquiti Bullet M5-HP 5Ghz - LiteBeam-5AC-GEN2 Communication} Communication between these two modules takes place at 5.8 GHz. Omni-directional data transmission is provided by using mushroom antenna on Bullet M5. The LiteBeam-5AC-GEN2 used in the ground station has an antenna having greater gain. The connection between the module and the ground station computer will be provided with an Ethernet cable. Thanks to this LAN connection, the video coming from the camera can be followed from the ground station.
+
+\paragraph*{AT9S PRO-R12DSM} The connection between the controller and the receiver takes place on the 2.4 GHz band. R12DSM has 12 channels and this is enough for the requirements of the design. 
+
+\paragraph*{RTK Module Connection} Here+ RTK module is connected to the ground station computer via USB port.
+
+\subsection{Ground Control Station Main Server Communication}
+Communication in HTTP protocol will be provided in order to be able to access data about rival UAVs coming to the main server and to transfer the requested information of Astrotech UAV to the main server. The standards of communication will be determined by the competition committee. Hardware connection will be established via ethernet cable.
 
 \section{USER INTERFACE DESIGN}
+In this section, design of the interface/s that will used on ground control station should be explained. Positions of information like speed, altitude, mode change, locking rectangle must be shown on interface.
+
+Astrotech Ground Station consists of two seperate units in order to provide the necessary controls for the flight and to transmit the command for the missions:
+
+\begin{itemize}
+	\item Open Source Ground Control Software
+	\item Astrotech UAV
+\end{itemize}
+
+It is considered suitable to run in Ubuntu operating system due to the ease of use of UNIX with ground control station software architecture and the used computer has Ubuntu operating system.
+
 
 \section{AIRCRAFT INTEGRATION}
 \subsection{Stuctural Integration}
