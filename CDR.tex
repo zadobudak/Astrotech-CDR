@@ -152,12 +152,52 @@ The minimum turn radius is found as 9.2 meters. While finding the minimum turn r
 
 \section{ORGANIZATION SUMMARY}
 \subsection{Team Organization}
+%TODO Team Organization figure here
+\justify As can be seen from the organization chart, the METU Comet Astrotech Team consists of the team captain, three  sub-teams and finance and logistics member.
+
 \subsection{Timeline and Budget}
+\paragraph*{Timeline} The lines shown in blue show the content of the planned timeline announced in March. The works performed and the period in which they were carried out are shown in green. Worked parts of unfinished jobs are marked in yellow and the rest in red. The parts marked in red thus show the current plan as well.
+
+\paragraph*{Budget} Bütçe ile ilgili tabloda tedarik edilen ürünler işaretlenmiştir. Bu ürünler için ödenen tutar ve tahmini tutar birlikte verilmiştir. Tedarik edilemeyen ürünler için güncel fiyatlar tabloya eklenmiştir. 
+should be turned to english.
 
 \section{DETAILED DESING SUMMARY}
 \subsection{Final System Architecture}
+\justify
+In this section, the final version of the system architecture, the brand / model information of the hardware to be used should be included. If there is a difference with the conceptual architecture, it should be stated and the reason should be explained.
+%TODO System Architecture figure here
+\justify
+
 \subsection{Subsystems Summary}
+In this chapter; compliance of selected subsystems with vehicle requirements and selection criteria specified in the preliminary design report will be explained. If there is more than one option researched for the same duty, it should also be explained why the final product was chosen. 
+
+\paragraph*{Flight Controller and GPS Sensor} PX4 autopilot software is preferred to ensure the stability of the UAV during flight and to prepare the appropriate background for the autonomous mission software to be developed. Flight controllers compatible with this software were examined. Pixhawk Cube Orange is preferred because it has a lower error rate in IMU data than its competitors, is easily accessible, has detailed documentation and many sample projects. On the other hand, the reasons behind the selection of GPS sensor were RTK module compatibility, update rate, and low error rates. In this regard, it was decided that the Here+3 met our requirements, with 2.5 meters accuracy without using the RTK module. Also, when RTK module is used, the error value can be minimized up to 0.25 meters. 
+
+\paragraph*{Companion Computer} To obtain real-time performance, an onboard computing unit responsible for object detection and tracking as well as the guidance and target selection steps will be utilized. These computations would require relatively high computing power, thus; we preferred Nvidia Jetson Xavier NX, whose performance fulfills the requirements for relatively low cost. 
+
+\paragraph*{Battery} The electronics and the propulsion system of our aircraft will be powered by a Li-Po battery that has enough capacity for a flight time of 25 minutes. According to our calculations, a 4 cell Li-Po battery with a nominal voltage of 14.8V and a capacity of 10000mAh is enough for our aircraft when we also consider the safety margins. As we can see from the power consumption table below in part 3.3, which includes components with major power use, our battery with a capacity of approximately 150W/h is adequate to power our aircraft for more than enough time.
+
+\paragraph*{Propulsion System and Servos} For our UAV, we choose a motor-propeller pair that gives us the needed thrust to weight ratio of 1.1 as efficiently as possible.
+% TODO FIGURE HERE 
+\justify 
+On the table above, we can see the thrust values and efficiency of different motors. We choose the T-Motor AT3520 850KV Motor because of it sufficient thrust value and high efficiency. This motor is powerful enough to supply our aircraft with enough thrust for the entirety of the competition. For the manipulation of the control surfaces, we will use servo motors with enough torque to guide our aircraft. ES09MD Servo Motors are selected to be used. They are small, lightweight and have enough torque. They were also preferred because they have metal gears and can be driven digitally. To drive our motors, we will use an ESC with a maximum current of 80A with a built-in BEC. Hobbywing Skywalker 80A ESC is selected to be used as it can provide the necessary power to our system.
+
+\paragraph*{Camera} The features of the camera and its suitability for UAV  are mentioned. The selected camera is e-CAM24-CUNX, which is a Full HD MIPI CSI-2 global shutter camera. This camera is based on a 1/ 2.6” AR0234CS global shutter CMOS image sensor with a well-tuned ISP. Its global shutter capability along with 120fps frame rate helps to minimize frame to frame distortion and reduce the motion artifacts while capturing. Therefore, the UAV can obtain clear images of competitor UAVs while detecting and tracking. eCAM24-CUNX can be directly connected to the MIPI CSI-2 connector of the Nvidia Jetson platforms which are Jetson XavierTM NX/TX2 NX/Nano via Flex cable. Another advantage of the camera is that MISI CSI-2 is faster and has a reliable protocol to handle video from 1080p to 8k and has a higher net image bandwidth than USB. In addition, its DOFV is 133.9 and it meets the desired view for image processing algorithms.
+
+\paragraph*{Pitot Tube} To calculate the airspeed of our aircraft, we will use a pitot tube that is compatible with the flight controller. Ready To Sky Jmt PT60 Pitot Tube is found to be adequate for our system.
+
+\paragraph*{RC Controller} Radiolink AT10II and its transceiver RD12S have 12 channels for communication, 4km actual air range with 3ms transmission latency, which makes it suitable to use in Astrotech UAV. Also, another reason behind this selection is that it is more accessible to buy for the Metu Comet Astrotech team. 
+
+\paragraph*{Telemetry Bundle} To transmit telemetry data between UAV and ground station with high speeds and low loss rates, a telemetry bundle with such specifications is needed. With a 40 km air transmission range, RFD868x Telemetry Bundle is suitable for the needs of Astrotech UAV. 
+
 \subsection{Aircraft Performance Summary}
+This section will demonstrate that the aircraft has propulsion that can remain in the air for the whole of a competition round.
+
+Aerodynamic analysis of the Astrotech’s tail, wing, and body has been done using XFLR5, an aerodynamic analysis program (figure X.). As a result of the analysis, Lift coefficient vs. Drag Coefficient (CL/CD) vs. Alpha (α) is plotted, as shown in figure X1. %TODO Figure X1 here
+
+The CL/CD vs. Alpha graph represents the efficiency of the aircraft, and the more CL/CD means, the more efficient the aircraft is. Therefore, we want High CL/CD for less fuel consumption and, as a result, more time in flight. Moreover, in steady level flight which is the condition thrust (T) is equal to drag force (D) and Lift Force (L) is equal to the weight of the aircraft(W), we want higher CL/CD values. In the graph, the CL/CD ratio between the 0-2 angle of attack (desired steady level flight angle of attacks) is between 19-21.  Thus, CL/CD ratio is around 20 when the condition is steady. However, Raymer (2018) stated that CL/CD ratio can decrease after the external components takes its place on the aircraft. Thus, after the external components such as servos are placed at the outer skeleton of the frame, we premeditate that this ratio can decrease up to 12. 
+
+
 \subsection{3D Design of Aircraft}
 \subsection{Aircraft Weight Distrubution}
 
