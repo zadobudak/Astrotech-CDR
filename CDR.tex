@@ -366,22 +366,72 @@ The integration of signal lines, especially the multitude of cables coming to th
 \subsection{Flight Test and Flight Checklist}
 The flight tests planned to be carried out are examined under two headings. The first of these is the tests in which data are collected, or basic autonomous capabilities are checked to understand the flight characteristics of the UAV. These tests are called basic flight tests. The other topic is flight tests for the mission. In these tests, different parts of the software are developed for the competition task, and finally, the task software as a whole is tested. Data from these tests are used for debugging. The following chapters examine basic flight tests in 8.2.1, mission-oriented tests in 8.2.2, and flight checklists in 8.2.3.
 
-\subsubsection*{Basic Flight Tests}
+\subsubsection{Basic Flight Tests}
 
-\paragraph*{First Flight test}\\
+\paragraph*{First Flight test}
 
 \subparagraph*{Purpose} The main purpose of this test is to verify that the UAV can fly smoothly in stabilized mode. If the pilot approves after a few laps in the air, then the vehicle's behavior in manual mode is tested. This test will reveal exact details about the flight characteristics of the aircraft while in stabilized mode. It is also required for autotune testing.
 
 \subparagraph*{Procedure}
-
-Although the first flight is very important in getting to know the UAV, it is one of the flights with the highest risk. Therefore, the flight location and the pilot must be suitable for this in the first flight. Which maneuvers are to be performed after the aircraft takes off and how aggressive to be while performing these maneuvers should be evaluated before the flight. During the test process, the entire test team should follow the flight in anticipation and be ready for any setback. The pilot should assess in advance where he can land in an emergency. \\
-
+Although the first flight is very important in getting to know the UAV, it is one of the flights with the highest risk. Therefore, the flight location and the pilot must be suitable for this in the first flight. Which maneuvers are to be performed after the aircraft takes off and how aggressive to be while performing these maneuvers should be evaluated before the flight. During the test process, the entire test team should follow the flight in anticipation and be ready for any setback. The pilot should assess in advance where he can land in an emergency. 
 
 There will be no companion computer and camera on the prepared aircraft. This is because these components are not needed for the first flight, and they also increase the loss in case of a possible crash. Pieces of XPS foam of the same weight will be cut and placed in their place.
 
 After the pre-flight checks are completed, the takeoff step starts. Afterward, maneuvers are made to draw an 8 in the air. These maneuvers are first performed with a large turning radius. A more aggressive turn is expected from the aircraft on each full lap. After observing the aircraft's behavior under this maneuver, different flight modes (LOITER, MANUAL, etc.) and climbing ability at different throttle values can be tested. After the trials are completed, the landing is made.
 
 \paragraph*{Autotune} 
+\subparagraph*{Purpose} Controller parameters on the flight control card must be rearranged according to the aircraft used. This arrangement will benefit from the auto-tuning feature of the PX4. After this stage, it is expected that the aircraft will operate more stable in stabilized mode.
+
+\subparagraph*{Procedure}In this test, the camera and companion computer will not be placed in the aircraft. During the test process, the procedure in the official guide of PX4 will be applied exactly.
+
+\paragraph*{Minimum Turning Radius Test}
+
+\subparagraph*{Purpose} Its calculation is to ensure that the minimum turning radius value, which was made in the 1.2. part and calculated as 9.2 m, is verified using the test data. These values are important as they are important inputs of the control algorithm.
+
+\subparagraph*{Procedure} In this test, the camera and companion computer will not be placed in the aircraft. 
+The 8 maneuvers made in the first flight test will be repeated in this test. After the flight, the position data obtained from the telemetry logs are examined, and a circular fit is applied to the turn curves. The minimum radius value obtained will be used as a constraint in the control software by putting a safety margin on it. While trying to find the correct value as much as possible during detection, a balance will be sought between aggressiveness and reliability regarding control software.
+
+\paragraph*{Stall Speed Determination Test}
+
+\subparagraph*{Purpose} It is important for the mission how fast the aircraft can go and how low speed it can hold in the air. The stall speed must be determined, especially regarding autonomous landing. This data will be used as the minimum speed constraint in the control software.
+The value tried to be determined during this test is for the power-off stall. The test procedure was designed accordingly.
+
+\subparagraph*{Procedure} In this test, the camera and companion computer will not be placed in the aircraft.
+After the pre-flight checks are completed, the UAV will take off and approach the runway repeatedly from a low altitude. During these approaches, the engine will be turned off or run at a very low speed. After these repeated operations, the UAV will land. The telemetry logs obtained will be evaluated, and the speed and heading values will be examined. After the evaluations, the minimum speed constraint to be used in the control software will be determined with the addition of a safety margin.
+
+\paragraph*{Autonomous Takeoff Test} 
+
+\subparagraph*{Purpose} The main purpose of the test is to test the autonomous take-off capability of the UAV.
+
+\subparagraph*{Procedure} In the autonomous take-off process, which is one of the requirements of the competition, it is expected that the aircraft will take off autonomously after it is thrown by hand. For this, take-off mode from the ground station or remote control will be activated.
+
+\paragraph*{Autonomous Landing Test} 
+
+\subparagraph*{Purpose} The main purpose of the test is to test the autonomous landing capability of the UAV.
+
+\subparagraph*{Procedure} Autonomous landing is a feature that must be tested as it requires approaching the runway at the right angle and speed. After the landing mode is activated, the behavior of the aircraft will be examined, and accordingly, the change of the relevant parameters or an alternative approach route to the runway will be tried.
+
+\paragraph*{Maximum Flight Time Test} 
+
+\subparagraph*{Purpose} It is to verify that the developed UAV can stay in the air during the mission and the power consumption calculation.
+
+\subparagraph*{Procedure} All power-consuming components that will be active during the competition must be on the aircraft. At the same time, all these components must be operated at a level close to the power consumption during the mission process. During the flight, the battery voltage variation is observed over the ground station. The descent will be performed when the battery voltage reaches the range of 3.70-3.75 volts. The time between the takeoff command to the aircraft and the UAV's touchdown will be considered the maximum flight time.
+
+\paragraph*{Basic Autonomous Flight Test} 
+
+\subparagraph*{Purpose} It is the verification that the UAV can perform autonomous take-off route tracking and autonomous landing successively without any problems.
+
+\subparagraph*{Procedure} Mission planning, one of the features of the PX4 software, will be used during this test. After the final checks, the UAV is thrown by hand and takes off autonomously. It is expected to land autonomously after fulfilling the pre-prepared mission.
+
+\subsubsection[]{Mission-Oriented Flight Tests}
+
+Before starting, some concepts used in this part have to be explained. One of them is a virtual target. A virtual target is the output of the software we have developed. This software creates agents that move like airplanes in 3D space. The initial positions and movements of these agents are random. There are just some predetermined constraints. These are the minimum turning radius, speed, and flight area limits. The software outputs the agents' paths as a list of points. By applying different time filters on this list, it can be adjusted how much detailed information the UAV can get from rival UAVs. Moreover, noise can be added to the output. This concept is an important element that we have designed for use in both simulation studies and field tests. The other concept is the 'path.' The path can be a curve or a list of points in three-dimensional space. Its distinguishing feature is that it can be tracked by a fixed-wing aircraft.
+
+%Todo figure here
+
+\paragraph*{Previously Generated Path Following Test} 
+
+\subparagraph*{Purpose} 
 
 
 \section{SAFETY}
